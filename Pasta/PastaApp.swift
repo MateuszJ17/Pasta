@@ -19,6 +19,7 @@ struct PastaApp: App {
     }
 }
 
+// TODO: remove this when MenuBarExtra comes out of beta
 class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     
     private var statusItem: NSStatusItem!

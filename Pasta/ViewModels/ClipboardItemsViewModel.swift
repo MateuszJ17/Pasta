@@ -27,4 +27,8 @@ class ClipboardItemsViewModel: ObservableObject {
         
         clipboardItems.append(contentsOf: mockData)
     }
+    
+    func testOnAppear() {
+        clipboardItems.append(ClipboardItem(id: UUID(), content: "XDDDD"))
+    }
 }

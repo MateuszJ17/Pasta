@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct ClipboardItem {
     var id: UUID
-    var content: String
+    var stringContent: String?
+    var imageContent: NSImage?
 }

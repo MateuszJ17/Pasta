@@ -6,29 +6,44 @@
 //
 
 import Foundation
+import AppKit
+import SwiftUI
 
 class ClipboardItemsViewModel: ObservableObject {
     @Published var clipboardItems: [ClipboardItem] = []
+    let pasteboard: NSPasteboard = .general
     
     init() {
+//        pasteboard.prepareForNewContents()
         getSampleData()
     }
-    
-    // TODO: create addItem func
     
     // TODO: create removeItem func
     
     func getSampleData() -> Void {
         let mockData: [ClipboardItem] = [
-            ClipboardItem(id: UUID(), content: "Some test string that I pasted but not really"),
-            ClipboardItem(id: UUID(), content: "Another test string"),
-            ClipboardItem(id: UUID(), content: "Some really long and repeating text really long and repeating text really long and repeating text really long and repeating text")
+            ClipboardItem(id: UUID(), stringContent: "Some test string that I pasted but not really"),
+            ClipboardItem(id: UUID(), stringContent: "Another test string"),
+            ClipboardItem(id: UUID(), stringContent: "Some really long and repeating text really long and repeating text really long and repeating text really long and repeating text")
         ]
         
         clipboardItems.append(contentsOf: mockData)
     }
     
-    func testOnAppear() {
-        clipboardItems.append(ClipboardItem(id: UUID(), content: "XDDDD"))
+    func handleNewClipboardElement() -> Void {
+        
+        let pasteboardString = pasteboard.data(forType: .string)
+        if let unwrappedPasteboardString = pasteboardString {
+            let pasteboardStringContent = String(decoding: unwrappedPasteboardString, as: UTF8.self)
+            clipboardItems.append(ClipboardItem(id: UUID(), stringContent: pasteboardStringContent))
+        }
+        
+        let pasteboardImage = pasteboard.data(forType: .tiff)
+        if let unwrappedPasteboardImage = pasteboardImage {
+            let pasteboardNsImage = NSImage(data: unwrappedPasteboardImage)
+            clipboardItems.append(ClipboardItem(id: UUID(), imageContent: pasteboardNsImage))
+        }
+        
+        
     }
 }

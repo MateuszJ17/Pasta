@@ -10,24 +10,36 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var viewModel: ClipboardItemsViewModel
     
+    
+    let pasteboardPublisher = NotificationCenter.default.publisher(for: .NSPasteboardDidChange)
+    
     init(viewModel: ClipboardItemsViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
-        VStack {
-            List(viewModel.clipboardItems, id: \.id) { clipboardItem in
+        NavigationView {
+            VStack {
+                List(viewModel.clipboardItems, id: \.id) { clipboardItem in
+                    RowView(viewModel: viewModel, clipboardItem: clipboardItem)
+                    Divider()
+                }
+                .environment(\.defaultMinListRowHeight, 50)
+                
                 HStack {
-                    VStack(alignment: .leading) {
-                        Text(clipboardItem.content)
-                        Divider()
+                    Button("Quit", role: .destructive) {
+                        NSApplication.shared.terminate(nil)
                     }
-                    
+                    .foregroundColor(Color.red)
                     Spacer()
                 }
+                .padding()
             }
-        }
+            .onReceive(pasteboardPublisher) { publisherOutput in
+                viewModel.handleNewClipboardElement()
+            }
         .frame(width: 300, height: 500)
+        }
     }
 }
 

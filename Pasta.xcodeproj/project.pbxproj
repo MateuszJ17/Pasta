@@ -13,6 +13,8 @@
 		610D5CFE2868BAEC002DBB60 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 610D5CFD2868BAEC002DBB60 /* Preview Assets.xcassets */; };
 		610D5D082868C307002DBB60 /* ClipboardItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610D5D072868C307002DBB60 /* ClipboardItemsViewModel.swift */; };
 		610D5D0B2868C33A002DBB60 /* ClipboardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610D5D0A2868C33A002DBB60 /* ClipboardItem.swift */; };
+		61566D11287201E50045039E /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61566D10287201E50045039E /* NSNotification+Extensions.swift */; };
+		61A7670F287229A000ED3665 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7670E287229A000ED3665 /* RowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		610D5D052868C27A002DBB60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		610D5D072868C307002DBB60 /* ClipboardItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardItemsViewModel.swift; sourceTree = "<group>"; };
 		610D5D0A2868C33A002DBB60 /* ClipboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardItem.swift; sourceTree = "<group>"; };
+		61566D10287201E50045039E /* NSNotification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extensions.swift"; sourceTree = "<group>"; };
+		61A7670E287229A000ED3665 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 		610D5CF52868BAE9002DBB60 /* Pasta */ = {
 			isa = PBXGroup;
 			children = (
+				61A7670B2872296700ED3665 /* Views */,
+				61566D0F287201CB0045039E /* Extensions */,
 				610D5D092868C326002DBB60 /* Models */,
 				610D5D062868C2EA002DBB60 /* ViewModels */,
 				610D5D052868C27A002DBB60 /* Info.plist */,
@@ -91,6 +97,22 @@
 				610D5D0A2868C33A002DBB60 /* ClipboardItem.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		61566D0F287201CB0045039E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				61566D10287201E50045039E /* NSNotification+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		61A7670B2872296700ED3665 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				61A7670E287229A000ED3665 /* RowView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,7 +186,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				610D5CF92868BAE9002DBB60 /* ContentView.swift in Sources */,
+				61A7670F287229A000ED3665 /* RowView.swift in Sources */,
 				610D5D0B2868C33A002DBB60 /* ClipboardItem.swift in Sources */,
+				61566D11287201E50045039E /* NSNotification+Extensions.swift in Sources */,
 				610D5CF72868BAE9002DBB60 /* PastaApp.swift in Sources */,
 				610D5D082868C307002DBB60 /* ClipboardItemsViewModel.swift in Sources */,
 			);

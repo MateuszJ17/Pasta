@@ -19,11 +19,14 @@ struct PastaApp: App {
     }
 }
 
-// TODO: remove this when MenuBarExtra comes out of beta
+// TODO: move popover stuff to MenuBarExtra when it comes out of beta
 class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     
     private var statusItem: NSStatusItem!
     private var popover: NSPopover!
+    private var timer: Timer!
+    private let pasteboard: NSPasteboard = .general
+    private var pasteboardLastChangeCount: Int = 0
     
     private var viewModel: ClipboardItemsViewModel!
     
@@ -42,6 +45,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         self.popover.contentSize = NSSize(width: 300, height: 500)
         self.popover.behavior = .transient
         self.popover.contentViewController = NSHostingController(rootView: ContentView(viewModel: self.viewModel))
+        
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { t in
+            if self.pasteboardLastChangeCount != self.pasteboard.changeCount {
+                self.pasteboardLastChangeCount = self.pasteboard.changeCount
+                NotificationCenter.default.post(name: .NSPasteboardDidChange, object: self.pasteboard)
+            }
+        }
+    }
+    
+    func applicationWillTerminate(_ notification: Notification) {
+        self.timer.invalidate()
     }
     
     @objc func togglePopover() {

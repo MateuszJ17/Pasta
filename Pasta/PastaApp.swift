@@ -14,7 +14,7 @@ struct PastaApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: ClipboardItemsViewModel())
+            ContentView(viewModel: appDelegate.viewModel)
         }
     }
 }
@@ -28,11 +28,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     private let pasteboard: NSPasteboard = .general
     private var pasteboardLastChangeCount: Int = 0
     
-    private var viewModel: ClipboardItemsViewModel!
+    var viewModel: ClipboardItemsViewModel = ClipboardItemsViewModel()
     
     func applicationDidFinishLaunching(_ notification: Notification) {
-        
-        self.viewModel = ClipboardItemsViewModel()
         
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         

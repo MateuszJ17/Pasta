@@ -10,7 +10,6 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var viewModel: ClipboardItemsViewModel
     
-    
     let pasteboardPublisher = NotificationCenter.default.publisher(for: .NSPasteboardDidChange)
     
     init(viewModel: ClipboardItemsViewModel) {
@@ -32,13 +31,16 @@ struct ContentView: View {
                     }
                     .foregroundColor(Color.red)
                     Spacer()
+                    Button("Clear") {
+                        // TODO: create a function for clearing all copied items and call it here
+                    }
                 }
                 .padding()
             }
             .onReceive(pasteboardPublisher) { publisherOutput in
                 viewModel.handleNewClipboardElement()
             }
-        .frame(width: 300, height: 500)
+            .frame(width: 300, height: 500)
         }
     }
 }

@@ -10,8 +10,6 @@ import SwiftUI
 struct RowView: View {
     @StateObject private var viewModel: ClipboardItemsViewModel
     
-    @State private var hovering: Bool = false
-    
     let clipboardItem: ClipboardItem
     
     init(viewModel: ClipboardItemsViewModel, clipboardItem: ClipboardItem) {
@@ -37,11 +35,15 @@ struct RowView: View {
             }
             Spacer()
             
-            // TODO: create insert into pasteboard action for the button in the viewmodel
+            // TODO: create delete from pasteboard function and call it here
             Button(action: viewModel.getSampleData) {
                 Label("", systemImage: "doc.on.doc")
             }
             .buttonStyle(.plain)
+            
+            // TODO: if shortcuts will be implemented display command+number
+//            Text("index")
+//                .foregroundStyle(.secondary)
         }
     }
 }

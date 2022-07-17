@@ -20,7 +20,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List(viewModel.clipboardItems, id: \.id) { clipboardItem in
+                List(viewModel.clipboardItems.reversed(), id: \.id) { clipboardItem in
                     RowView(viewModel: viewModel, clipboardItem: clipboardItem)
                     Divider()
                 }

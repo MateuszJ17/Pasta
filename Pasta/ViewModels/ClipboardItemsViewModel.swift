@@ -14,7 +14,7 @@ class ClipboardItemsViewModel: ObservableObject {
     let pasteboard: NSPasteboard = .general
     
     init() {
-//        pasteboard.prepareForNewContents()
+        //        pasteboard.prepareForNewContents()
         getSampleData()
     }
     
@@ -31,19 +31,34 @@ class ClipboardItemsViewModel: ObservableObject {
     }
     
     func handleNewClipboardElement() -> Void {
-        
         let pasteboardString = pasteboard.data(forType: .string)
         if let unwrappedPasteboardString = pasteboardString {
             let pasteboardStringContent = String(decoding: unwrappedPasteboardString, as: UTF8.self)
-            clipboardItems.append(ClipboardItem(id: UUID(), stringContent: pasteboardStringContent))
+            
+            if !isElementAlreadyCopied(pasteboardStringContent) {
+                clipboardItems.appendOrReplaceOldest(ClipboardItem(id: UUID(), stringContent: pasteboardStringContent))
+            }
         }
         
         let pasteboardImage = pasteboard.data(forType: .tiff)
         if let unwrappedPasteboardImage = pasteboardImage {
             let pasteboardNsImage = NSImage(data: unwrappedPasteboardImage)
-            clipboardItems.append(ClipboardItem(id: UUID(), imageContent: pasteboardNsImage))
+            
+            if !isElementAlreadyCopied(pasteboardNsImage) {
+                clipboardItems.appendOrReplaceOldest(ClipboardItem(id: UUID(), imageContent: pasteboardNsImage))
+            }
         }
-        
-        
+    }
+    
+    
+    func isElementAlreadyCopied<T>(_ element: T) -> Bool {
+        switch element {
+        case let stringElement as String:
+            return clipboardItems.contains(where: { $0.stringContent == stringElement })
+        case let imageElement as NSImage:
+            return clipboardItems.contains(where: { $0.imageContent?.tiffRepresentation == imageElement.tiffRepresentation })
+        default:
+            return false
+        }
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RowView: View {
     @StateObject private var viewModel: ClipboardItemsViewModel
+    @State private var isHovering: Bool = false
     
     let clipboardItem: ClipboardItem
     
@@ -33,17 +34,18 @@ struct RowView: View {
                         .frame(height: 120)
                 }
             }
+            .padding(.all, 5)
+            .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
+            .background(isHovering ? Color.accentColor : Color.clear)
+            .onHover { hover in
+                isHovering = hover
+            }
             Spacer()
             
-            // TODO: create delete from pasteboard function and call it here
-            Button(action: viewModel.getSampleData) {
-                Label("", systemImage: "doc.on.doc")
+            Button(action: { viewModel.deleteStoredItem(itemId: clipboardItem.id) }) {
+                Label("", systemImage: "trash")
             }
             .buttonStyle(.plain)
-            
-            // TODO: if shortcuts will be implemented display command+number
-//            Text("index")
-//                .foregroundStyle(.secondary)
         }
     }
 }

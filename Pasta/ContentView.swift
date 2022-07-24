@@ -19,23 +19,28 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List(viewModel.clipboardItems.reversed(), id: \.id) { clipboardItem in
-                    RowView(viewModel: viewModel, clipboardItem: clipboardItem)
-                    Divider()
-                }
-                .environment(\.defaultMinListRowHeight, 50)
-                
-                HStack {
-                    Button("Quit", role: .destructive) {
-                        NSApplication.shared.terminate(nil)
-                    }
-                    .foregroundColor(Color.red)
-                    Spacer()
-                    Button("Clear") {
-                        // TODO: create a function for clearing all copied items and call it here
+                if viewModel.clipboardItems.count == 0 {
+                    VStack {
+                        Spacer()
+                        Text("Start by copying some items into clipboard")
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        FooterButtonsView(viewModel: viewModel)
                     }
                 }
-                .padding()
+                else {
+                    List(viewModel.clipboardItems.reversed(), id: \.id) { clipboardItem in
+                        RowView(viewModel: viewModel, clipboardItem: clipboardItem)
+                            .onTapGesture {
+                                viewModel.copyItemToSystemPasteboard(item: clipboardItem)
+                                viewModel.closePopover() // TODO: make method to copy item to clipboard and call it here
+                            }
+                        Divider()
+                    }
+                    .environment(\.defaultMinListRowHeight, 50)
+                    
+                    FooterButtonsView(viewModel: viewModel)
+                }
             }
             .onReceive(pasteboardPublisher) { publisherOutput in
                 viewModel.handleNewClipboardElement()

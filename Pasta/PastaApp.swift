@@ -50,6 +50,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                 NotificationCenter.default.post(name: .NSPasteboardDidChange, object: self.pasteboard)
             }
         }
+        
+        pasteboard.prepareForNewContents()
     }
     
     func applicationWillTerminate(_ notification: Notification) {

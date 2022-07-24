@@ -14,6 +14,7 @@
 		610D5D082868C307002DBB60 /* ClipboardItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610D5D072868C307002DBB60 /* ClipboardItemsViewModel.swift */; };
 		610D5D0B2868C33A002DBB60 /* ClipboardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610D5D0A2868C33A002DBB60 /* ClipboardItem.swift */; };
 		61566D11287201E50045039E /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61566D10287201E50045039E /* NSNotification+Extensions.swift */; };
+		61640770288DBA06009A9248 /* FooterButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6164076F288DBA06009A9248 /* FooterButtonsView.swift */; };
 		61A7670F287229A000ED3665 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A7670E287229A000ED3665 /* RowView.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		610D5D072868C307002DBB60 /* ClipboardItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardItemsViewModel.swift; sourceTree = "<group>"; };
 		610D5D0A2868C33A002DBB60 /* ClipboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardItem.swift; sourceTree = "<group>"; };
 		61566D10287201E50045039E /* NSNotification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extensions.swift"; sourceTree = "<group>"; };
+		6164076F288DBA06009A9248 /* FooterButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterButtonsView.swift; sourceTree = "<group>"; };
 		61A7670E287229A000ED3665 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				61A7670E287229A000ED3665 /* RowView.swift */,
+				6164076F288DBA06009A9248 /* FooterButtonsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				61A7670F287229A000ED3665 /* RowView.swift in Sources */,
 				610D5D0B2868C33A002DBB60 /* ClipboardItem.swift in Sources */,
 				61566D11287201E50045039E /* NSNotification+Extensions.swift in Sources */,
+				61640770288DBA06009A9248 /* FooterButtonsView.swift in Sources */,
 				610D5CF72868BAE9002DBB60 /* PastaApp.swift in Sources */,
 				610D5D082868C307002DBB60 /* ClipboardItemsViewModel.swift in Sources */,
 			);

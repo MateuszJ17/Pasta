@@ -13,29 +13,12 @@ class ClipboardItemsViewModel: ObservableObject {
     @Published var clipboardItems: [ClipboardItem] = []
     let pasteboard: NSPasteboard = .general
     
-    init() {
-        //        pasteboard.prepareForNewContents()
-        getSampleData()
-    }
-    
-    // TODO: create removeItem func
-    
-    func getSampleData() -> Void {
-        let mockData: [ClipboardItem] = [
-            ClipboardItem(id: UUID(), stringContent: "Some test string that I pasted but not really"),
-            ClipboardItem(id: UUID(), stringContent: "Another test string"),
-            ClipboardItem(id: UUID(), stringContent: "Some really long and repeating text really long and repeating text really long and repeating text really long and repeating text")
-        ]
-        
-        clipboardItems.append(contentsOf: mockData)
-    }
-    
     func handleNewClipboardElement() -> Void {
         let pasteboardString = pasteboard.data(forType: .string)
         if let unwrappedPasteboardString = pasteboardString {
             let pasteboardStringContent = String(decoding: unwrappedPasteboardString, as: UTF8.self)
             
-            if !isElementAlreadyCopied(pasteboardStringContent) {
+            if !isElementAlreadyCopied(element: pasteboardStringContent) {
                 clipboardItems.appendOrReplaceOldest(ClipboardItem(id: UUID(), stringContent: pasteboardStringContent))
             }
         }
@@ -44,14 +27,36 @@ class ClipboardItemsViewModel: ObservableObject {
         if let unwrappedPasteboardImage = pasteboardImage {
             let pasteboardNsImage = NSImage(data: unwrappedPasteboardImage)
             
-            if !isElementAlreadyCopied(pasteboardNsImage) {
+            if !isElementAlreadyCopied(element: pasteboardNsImage) {
                 clipboardItems.appendOrReplaceOldest(ClipboardItem(id: UUID(), imageContent: pasteboardNsImage))
             }
         }
     }
     
+    func copyItemToSystemPasteboard(item: ClipboardItem) {
+        pasteboard.clearContents()
+        
+        if let stringToInsert = item.stringContent {
+            pasteboard.setString((stringToInsert), forType: .string)
+        }
+        if let imageToInsertTiffRepresentation = item.imageContent?.tiffRepresentation {
+            pasteboard.setData(Data(imageToInsertTiffRepresentation), forType: .tiff)
+        }
+    }
     
-    func isElementAlreadyCopied<T>(_ element: T) -> Bool {
+    func deleteStoredItem(itemId: UUID) -> Void {
+        clipboardItems.removeAll(where: { $0.id == itemId })
+    }
+    
+    func clearAllStoredItems() -> Void {
+        clipboardItems.removeAll()
+    }
+    
+    func closePopover() -> Void {
+        NSApp.sendAction(#selector(NSPopover.performClose(_:)), to: nil, from: nil)
+    }
+    
+    private func isElementAlreadyCopied<T>(element: T) -> Bool {
         switch element {
         case let stringElement as String:
             return clipboardItems.contains(where: { $0.stringContent == stringElement })

@@ -1,17 +1,10 @@
-//
-//  ClipboardItemsViewModel.swift
-//  Pasta
-//
-//  Created by Mateusz Jaroszewski on 26/06/2022.
-//
-
 import Foundation
 import AppKit
 import SwiftUI
 
 class ClipboardItemsViewModel: ObservableObject {
     @Published var clipboardItems: [ClipboardItem] = []
-    let pasteboard: NSPasteboard = .general
+    private let pasteboard: NSPasteboard = .general
     
     func handleNewClipboardElement() -> Void {
         let pasteboardString = pasteboard.data(forType: .string)

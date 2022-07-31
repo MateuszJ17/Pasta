@@ -1,10 +1,3 @@
-//
-//  FooterButtonsView.swift
-//  Pasta
-//
-//  Created by Mateusz Jaroszewski on 24/07/2022.
-//
-
 import SwiftUI
 
 struct FooterButtonsView: View {

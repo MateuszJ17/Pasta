@@ -1,10 +1,3 @@
-//
-//  PastaApp.swift
-//  Pasta
-//
-//  Created by Mateusz Jaroszewski on 26/06/2022.
-//
-
 import SwiftUI
 
 @main
@@ -19,7 +12,7 @@ struct PastaApp: App {
     }
 }
 
-// TODO: move popover stuff to MenuBarExtra when it comes out of beta
+// TODO: maybe move popover stuff to MenuBarExtra when it comes out of beta
 class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     
     private var statusItem: NSStatusItem!

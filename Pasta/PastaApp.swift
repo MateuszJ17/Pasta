@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     
     var viewModel: ClipboardItemsViewModel = ClipboardItemsViewModel()
     
-    func applicationDidFinishLaunching(_ notification: Notification) {
+    func applicationDidFinishLaunching(_ notification: Notification) -> Void {
         
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         
@@ -47,11 +47,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         pasteboard.prepareForNewContents()
     }
     
-    func applicationWillTerminate(_ notification: Notification) {
+    func applicationWillTerminate(_ notification: Notification) -> Void {
         self.timer.invalidate()
     }
     
-    @objc func togglePopover() {
+    @objc func togglePopover() -> Void {
         if let statusBarButton = statusItem.button {
             if popover.isShown {
                 self.popover.performClose(nil)

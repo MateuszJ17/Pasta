@@ -26,7 +26,7 @@ class ClipboardItemsViewModel: ObservableObject {
         }
     }
     
-    func copyItemToSystemPasteboard(item: ClipboardItem) {
+    func copyItemToSystemPasteboard(item: ClipboardItem) -> Void {
         pasteboard.clearContents()
         
         if let stringToInsert = item.stringContent {

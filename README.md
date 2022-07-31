@@ -2,7 +2,7 @@
 Simple copy and paste clipboard manager. Wokrs with images as well as text.
 
 
-#Table of contents
+# Table of contents
 1. [Description](#description)
 1. [How to create executable](#how-to-create-executable)
 1. [How to start at system start](#how-to-start-at-system-start)

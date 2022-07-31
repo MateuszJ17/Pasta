@@ -26,7 +26,7 @@ struct ContentView: View {
                         RowView(viewModel: viewModel, clipboardItem: clipboardItem)
                             .onTapGesture {
                                 viewModel.copyItemToSystemPasteboard(item: clipboardItem)
-                                viewModel.closePopover() // TODO: make method to copy item to clipboard and call it here
+                                viewModel.closePopover()
                             }
                         Divider()
                     }

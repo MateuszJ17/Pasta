@@ -1,5 +1,5 @@
 # Pasta
-Simple copy and paste clipboard manager. Wokrs with images as well as text.
+Simple copy and paste clipboard manager. Works with images as well as text.
 
 
 # Table of contents
@@ -19,7 +19,7 @@ Simple copy and paste clipboard manager. Wokrs with images as well as text.
 <p>Then you can insert selected row back into system pasteboard simply by clicking it. You can also remove individual items, or clear the whole list. <b>Pasta stores up to 10 items. After that oldest item will be replaced with the newly copied one!</b></p>
 
 # How to create executable
-<p>After cloning the repo, open it in Xcode. After that go to Product > Archive >D istribute app and select the 'Copy app' option.</p>
+<p>After cloning the repo, open it in Xcode. After that go to Product > Archive > Distribute app and select the 'Copy app' option.</p>
 <img width="754" alt="obraz" src="https://user-images.githubusercontent.com/23579349/182027825-8b498805-70f9-4458-8303-bf9f88654ffb.png">
 <p>Then select the location and click 'Export'. The application should be there. After doing this you can simply drag and drop it into your system 'Applications' directory.</p>
 
